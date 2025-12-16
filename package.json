@@ -5,20 +5,75 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --windows"
+    "build": "electron-builder",
+    "build:win": "electron-builder --windows",
+    "build:mac": "electron-builder --macos",
+    "build:linux": "electron-builder --linux",
+    "build:all": "electron-builder -mwl"
   },
   "build": {
     "appId": "com.matrix.pskgenerator",
     "productName": "Matrix PSK Generator",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "icon.ico",
+      "icon.icns",
+      "icon.png"
+    ],
     "win": {
-      "target": "nsis",
-      "icon": "icon.ico"
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "icon.ico",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "icon.icns",
+      "category": "public.app-category.utilities",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "icon": "icon.png",
+      "category": "Utility",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico"
     }
   },
+  "keywords": [
+    "psk",
+    "generator",
+    "security",
+    "matrix"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^28.0.0",
     "electron-builder": "^24.9.1"
