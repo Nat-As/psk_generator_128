@@ -1,0 +1,26 @@
+{
+  "name": "matrix-psk-generator",
+  "version": "1.0.0",
+  "description": "Matrix-themed PSK Generator",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --windows"
+  },
+  "build": {
+    "appId": "com.matrix.pskgenerator",
+    "productName": "Matrix PSK Generator",
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  }
+}
