@@ -14,8 +14,8 @@ function createWindow() {
 
   win.loadFile('index.html');
   
-  // Uncomment to hide menu bar
-  // win.setMenuBarVisibility(false);
+  // hide menu bar
+  win.setMenuBarVisibility(false);
 }
 
 app.whenReady().then(() => {
